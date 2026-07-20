@@ -20,6 +20,7 @@ def load_report():
 
 
 def test_total_requests():
+    """Success criterion 1: total_requests equals the number of non-empty entries."""
     report = load_report()
 
     assert type(report.get("total_requests")) is int
@@ -27,6 +28,7 @@ def test_total_requests():
 
 
 def test_unique_ips():
+    """Success criterion 2: unique_ips equals the number of distinct client IPs."""
     report = load_report()
 
     assert type(report.get("unique_ips")) is int
@@ -34,13 +36,15 @@ def test_unique_ips():
 
 
 def test_top_path():
+    """Success criterion 3: top_path is the most frequently requested path."""
     report = load_report()
 
     assert type(report.get("top_path")) is str
     assert report["top_path"] == "/index.html"
 
 
-def test_exact_schema():
+def test_json_schema():
+    """Success criterion 4: output is valid JSON with exactly the required keys."""
     report = load_report()
 
     assert set(report.keys()) == EXPECTED_KEYS

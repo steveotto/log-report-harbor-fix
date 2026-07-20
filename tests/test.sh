@@ -3,7 +3,11 @@ set -uo pipefail
 
 mkdir -p /logs/verifier
 
-pytest /tests/test_outputs.py -rA
+pytest \
+  /tests/test_outputs.py \
+  --ctrf /logs/verifier/ctrf.json \
+  -rA
+
 status=$?
 
 if [ "$status" -eq 0 ]; then
